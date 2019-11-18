@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crispy_forms', # 3rd party
-    'search.apps.SearchConfig', # new app_
+    'search.apps.SearchConfig', # new app
+    'favorites.apps.FavoritesConfig', # new app
+    'product.apps.ProductConfig', # new app
+    'account.apps.AccountConfig', # new app
 
     'django.contrib.admin',
     'django.contrib.auth',
