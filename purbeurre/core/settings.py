@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'favorites.apps.FavoritesConfig', # new app
     'product.apps.ProductConfig', # new app
     'account.apps.AccountConfig', # new app
+    'legals.apps.LegalsConfig', # new app
 
     'django.contrib.admin',
     'django.contrib.auth',
