@@ -14,6 +14,8 @@
   <!-- Font Awesome Icons -->
   <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css"> 
 
+  <!-- Font awesome cdn -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -24,46 +26,60 @@
 
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="{% static 'css/creative.min.css' %}" rel="stylesheet"> 
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   
 
   <!-- ici mettre mon css pour superposer a celui du theme -->
   <link rel="stylesheet" href="{% static 'css/icon.css' %}">
 
-
+  <!-- css for search form in nav bar -->
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  
+  {% block css %}
+    
+  {% endblock css %}
+    
 </head>
 
 <body id="page-top">
+  
+  
+  {% block content %}
+    
+  {% endblock content %}
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a href="/" class="navbar-brand js-scroll-trigger">
+        <img src="{% static 'img/icons/pb50.png' %}">
+        Pur Beurre</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+          <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-              <!-- <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form> -->
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
+      <div class="navbar-collapse collapse" id="navbar5">
+          <form class="m-2 form-inline ml-auto " action="#">
+            <div class="input-group">
+                <input type="text" class="form-control border border-right-0" placeholder="Rechercher">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary border border-left-0" type="submit">
+                      <i class="fa fa-search"></i>
+                  </button>
+                </span>
+            </div>
+          </form>
+          <ul class="navbar-nav">
+              <li class="nav-item active">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'account-account' %}"><i class="fas fa-user fa-3x"></i></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'favorites-favorites' %}"><img src="{% static 'img/icons/carrot50.png' %}"></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'search-search' %}"><i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+                  </a>
+              </li>
+          </ul>
       </div>
-    </div>
   </nav>
 
   <!-- Masthead -->  
@@ -84,44 +100,11 @@
     </div>
   </section> -->
 
-  <!-- Services Section -->
-  <section class="page-section" id="services">
-    <div class="container">
-      <h2 class="text-center mt-0">At Your Service</h2>
-      <hr class="divider my-4">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Sturdy Themes</h3>
-            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Up to Date</h3>
-            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Ready to Publish</h3>
-            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Made with Love</h3>
-            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Story colette and Remy -->  
+  {% block story %}
+    
+  {% endblock story %}
+    
   <!-- Portfolio Section -->  
   {% block portfolio %}    
   {% endblock portfolio %}
@@ -143,7 +126,14 @@
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+      <section class="row">
+        <div class="col-6 text-center">
+          <a href="{% url 'legals-legals' %}" target="_blank">Mention Legal</a>          
+        </div>
+        <div class="col-6 text-center">
+          <a href="{% url 'search-search'%}#contact">Contact</a>
+        </div>
+      </section>
     </div>
   </footer>
 
