@@ -3,118 +3,112 @@
 
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'favorites/css/favorites.css'  %}">  
+  <link rel="stylesheet" href="{% static 'search/css/custom.css' %}">
 {% endblock css %}
   
 
+<!-- Product searched -->
 {% block masterhead %}
-    <header class="masthead">
-        <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-10 align-self-end">
-            <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes :)</h1>
-            <hr class="divider my-4">
-                <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-offset-5 col-lg-5 ">
-                    <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-                </div>  
-            </div>
-            <div class="col-lg-8 align-self-baseline">
-            <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-            </div>
-        </div>
+    <header class="masthead masthead-custom">
+        <div class="container">
+          <div class="row h-30 align-items-center justify-content-center text-center">
+              <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vos aliments favoris !</h1>
+              </div>
+          </div>
         </div>
     </header>    
 {% endblock masterhead %}
 
-{% block portfolio %}
-    <section id="portfolio">
-        <div class="container-fluid p-0">
-          <div class="row no-gutters">
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/1.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/1.jpg' %}" alt="">
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/2.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/2.jpg' %}" alt="">
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/3.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/3.jpg' %}" alt="">
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/4.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/4.jpg' %}" alt="">
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/5.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/5.jpg' %}" alt="">
-                <div class="portfolio-box-caption">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/6.jpg' %}">
-                <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/6.jpg' %}" alt="">
-                <div class="portfolio-box-caption p-3">
-                  <div class="project-category text-white-50">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </a>
-            </div>
+<!-- Display better products -->
+{% block results %}
+<section class="page-section" id="story">
+    <div class="container">
+  
+      <!-- Row 1 -->
+      <div class="row">
+        <!-- Colette -->
+        <div class="col-lg-4 col-md-4 text-center custom-div ">
+          <div class="mt-5 "> 
+            <!-- Prod -->
+            <a class="image-container" href="{% url 'product-product' %}">
+              <img src="https://via.placeholder.com/250x150" alt="">
+              <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
+            </a>
+            <h3 class="h4 mb-2">Nom aliment</h3>
+            <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
           </div>
         </div>
-    </section>    
-{% endblock portfolio %}    
+        <!-- Prod -->
+        <div class="col-lg-4 col-md-4 text-center custom-div">
+          <div class="mt-5 "> 
+            <!-- image -->
+            <a class="image-container" href="{% url 'product-product' %}">
+              <img src="https://via.placeholder.com/250x150" alt="">
+              <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
+            </a>
+            <h3 class="h4 mb-2">Nom aliment</h3>
+            <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
+            
+          </div>
+        </div>
+        <!-- Prod -->
+        <div class="col-lg-4 col-md-4 text-center">
+            <div class="mt-5 "> 
+              <!-- image -->
+              <a class="image-container" href="{% url 'product-product' %}">
+                <img src="https://via.placeholder.com/250x150" alt="">
+                <img class ="nutriscore" src="{% static 'search/img/c.png' %}" alt="">
+              </a>
+              <h3 class="h4 mb-2">Nom aliment</h3>
+              <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
+              
+            </div>
+          </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row">
+          <!-- Colette -->
+          <div class="col-lg-4 col-md-4 text-center">
+            <div class="mt-5 "> 
+              <!-- Prod -->
+              <a class="image-container" href="{% url 'product-product' %}">
+                <img src="https://via.placeholder.com/250x150" alt="">
+                <img class ="nutriscore" src="{% static 'search/img/d.png' %}" alt="">
+              </a>
+              <h3 class="h4 mb-2">Nom aliment</h3>
+              <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
+              
+            </div>
+          </div>
+          <!-- Prod -->
+          <div class="col-lg-4 col-md-4 text-center">
+            <div class="mt-5 "> 
+              <!-- image -->
+              <a class="image-container" href="{% url 'product-product' %}">
+                <img src="https://via.placeholder.com/250x150" alt="">
+                <img class ="nutriscore" src="{% static 'search/img/e.png' %}" alt="">
+              </a>
+              <h3 class="h4 mb-2">Nom aliment</h3>
+              <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
+              
+            </div>
+          </div>
+          <!-- Prod -->
+          <div class="col-lg-4 col-md-4 text-center">
+              <div class="mt-5 "> 
+                <!-- image -->
+                <a class="image-container" href="{% url 'product-product' %}">
+                  <img src="https://via.placeholder.com/250x150" alt="">
+                  <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
+                </a>
+                <h3 class="h4 mb-2">Nom aliment</h3>
+                <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
+                
+              </div>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock results %}    

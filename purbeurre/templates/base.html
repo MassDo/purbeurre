@@ -26,26 +26,18 @@
 
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="{% static 'css/creative.min.css' %}" rel="stylesheet"> 
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   
-
-  <!-- ici mettre mon css pour superposer a celui du theme -->
-  <link rel="stylesheet" href="{% static 'css/icon.css' %}">
-
   <!-- css for search form in nav bar -->
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/custom.css' %}"> -->
   
+  <!-- Block for local custom css -->
   {% block css %}
-    
   {% endblock css %}
     
 </head>
 
 <body id="page-top">
-  
-  
   {% block content %}
-    
   {% endblock content %}
 
   <!-- Navigation -->
@@ -57,7 +49,7 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse" id="navbar5">
-          <form class="m-2 form-inline ml-auto " action="#">
+          <form class="m-2 form-inline ml-auto " action="{% url 'search-results' %}">
             <div class="input-group">
                 <input type="text" class="form-control border border-right-0" placeholder="Rechercher">
                 <span class="input-group-append">
@@ -102,12 +94,11 @@
 
   <!-- Story colette and Remy -->  
   {% block story %}
-    
   {% endblock story %}
     
   <!-- Portfolio Section -->  
-  {% block portfolio %}    
-  {% endblock portfolio %}
+  {% block results %}    
+  {% endblock results %}
     
   
 

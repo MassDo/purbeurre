@@ -1,0 +1,28 @@
+a.image-container {
+    position: relative;
+}
+
+img.nutriscore {
+    position: absolute;
+    top: -95px;
+    right: -95px;
+}
+
+/* div.custom-div {
+    margin-right: 10px;
+} */
+
+
+@media(min-width: 991px ){
+
+    header.masthead.masthead-custom {
+        height: 40vh;
+        min-height: 15rem;
+        padding-top: 30x;
+    }
+
+    h1.prod-title-custom {
+        padding-top: 30px;
+    }
+}
+

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
+<!-- Product search form -->
 {% block masterhead %}
     <header class="masthead">
         <div class="container h-100">
@@ -12,7 +12,7 @@
                 <h2 class="text-white ">Trouvez un produit de substitution pour ceux que vous consommez tous les jours</h2>
               </div>
               <!-- Form -->
-              <form class="form-inline" action="##">
+              <form class="form-inline" action="{% url 'search-results' %}">
                 <div class="form-group mx-sm-3 mb-2">
                   <input type="text" class="form-control" id="produit" placeholder="Produit">
                 </div>
@@ -23,13 +23,17 @@
     </header>    
 {% endblock masterhead %} 
 
-
+<!-- Stories of Colette and Rémy -->
 {% block story %}
 <section class="page-section" id="story">
   <div class="container">
+    
+    <!-- Titles -->
     <h2 class="text-center mt-0">Colette et Remy</h2>
     <hr class="divider my-4">
+
     <div class="row">
+      <!-- Colette -->
       <div class="col-lg-6 col-md-6 text-center">
         <div class="mt-5"> 
           <img src="{% static 'search/img/colette.png' %}" alt="">
@@ -37,6 +41,7 @@
           <p class="text-muted mb-0">"Nous aimons tous manger, surtout en France ! Personnellement, une baguette fraîche, du bon fromage de chèvre et un bon vin rouge me suffisent amplement. Comme tout le monde, je fais mes courses au supermarché. Mais petit à petit je me suis rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer les produits aseptisés que j'avais l'habitude d'acheter par de bons produits du terroir Et souvent pour le même prix !"</p>
         </div>
       </div>
+      <!-- Remy -->
       <div class="col-lg-6 col-md-6 text-center">
         <div class="mt-5">
           <img src="{% static 'search/img/remy.jpg' %}" alt="">
@@ -44,13 +49,13 @@
           <p class="text-muted mb-0"> "Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !"</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-  
 {% endblock story %}
   
-
+<!-- Contact informations -->
 {% block contact %}
     <section class="page-section" id="contact">
         <div class="container">

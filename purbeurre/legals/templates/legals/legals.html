@@ -1,3 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'search/css/custom.css' %}">
+{% endblock css %}
+  
+
+<!-- Product searched -->
+{% block masterhead %}
+    <header class="masthead masthead-custom">
+        <div class="container">
+          <div class="row h-30 align-items-center justify-content-center text-center">
+              <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Mentions légales......</h1>
+              </div>
+          </div>
+        </div>
+    </header>    
+{% endblock masterhead %}

@@ -39,7 +39,7 @@
               <img src="https://via.placeholder.com/250x150" alt="">
               <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
             </a>
-            <h3 class="h4 mb-2">Nom aliment 1</h3>
+            <h3 class="h4 mb-2">Nom aliment 13</h3>
             <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
           </div>
         </div>
@@ -51,7 +51,7 @@
               <img src="https://via.placeholder.com/250x150" alt="">
               <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
             </a>
-            <h3 class="h4 mb-2">Nom aliment 2</h3>
+            <h3 class="h4 mb-2">Nom aliment 14</h3>
             <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
             
           </div>
@@ -64,7 +64,7 @@
                 <img src="https://via.placeholder.com/250x150" alt="">
                 <img class ="nutriscore" src="{% static 'search/img/c.png' %}" alt="">
               </a>
-              <h3 class="h4 mb-2">Nom aliment 3</h3>
+              <h3 class="h4 mb-2">Nom aliment 15</h3>
               <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
               
             </div>
@@ -81,7 +81,7 @@
               <img src="https://via.placeholder.com/250x150" alt="">
               <img class ="nutriscore" src="{% static 'search/img/d.png' %}" alt="">
             </a>
-            <h3 class="h4 mb-2">Nom aliment 4</h3>
+            <h3 class="h4 mb-2">Nom aliment 16</h3>
             <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
             
           </div>
@@ -94,7 +94,7 @@
               <img src="https://via.placeholder.com/250x150" alt="">
               <img class ="nutriscore" src="{% static 'search/img/e.png' %}" alt="">
             </a>
-            <h3 class="h4 mb-2">Nom aliment 5</h3>
+            <h3 class="h4 mb-2">Nom aliment 17</h3>
             <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
             
           </div>
@@ -107,7 +107,7 @@
                 <img src="https://via.placeholder.com/250x150" alt="">
                 <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
               </a>
-              <h3 class="h4 mb-2">Nom aliment 6</h3>
+              <h3 class="h4 mb-2">Nom aliment 18</h3>
               <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Sauvegarder</span></a>
               
             </div>
@@ -116,10 +116,10 @@
     </div>
     <nav aria-label="Page navigation example ">
       <ul class="pagination justify-content-center mt-5">
-        <li class="page-item disabled">
+        <li class="page-item ">
           <a class="page-link" href="#" tabindex="-1">Previous</a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="{% url 'search-results' %}">1</a></li>
         <li class="page-item"><a class="page-link" href="{% url 'search-result2' %}">2</a></li>
         <li class="page-item"><a class="page-link" href="{% url 'search-result3' %}">3</a></li>
         <li class="page-item">
@@ -128,4 +128,4 @@
       </ul>
     </nav>
   </section>
-{% endblock results %}    
+{% endblock results %}   
