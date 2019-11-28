@@ -32,11 +32,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crispy_forms', # 3rd party
-    'search.apps.SearchConfig', # new app
-    'favorites.apps.FavoritesConfig', # new app
-    'product.apps.ProductConfig', # new app
-    'account.apps.AccountConfig', # new app
-    'legals.apps.LegalsConfig', # new app
+
+    'search.apps.SearchConfig', # new app SEARCH
+    'favorites.apps.FavoritesConfig', # new app FAVORITES
+    'product.apps.ProductConfig', # new app PRODUCT
+    'account.apps.AccountConfig', # new app Account
+    'legals.apps.LegalsConfig', # new app LEGAL
+    'users.apps.UsersConfig', # new app USERS
+    'signup.apps.SignupConfig', # new app SIGNUP
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -130,3 +133,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# Crispy Framework
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# User model for the authentification
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# AFTER LOGIN
+LOGIN_REDIRECT_URL = 'search-search'

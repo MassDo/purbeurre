@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block masterhead %}
+
+    <form method="post">
+        {% csrf_token %}
+        <legend> User creation form</legend>
+        {{ form|crispy}}
+        <input name="valider" type="submit">
+    </form>  
+     
+{% endblock masterhead %}
