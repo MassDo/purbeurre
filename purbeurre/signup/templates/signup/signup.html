@@ -5,11 +5,20 @@
 
 {% block masterhead %}
 
-    <form method="post">
-        {% csrf_token %}
-        <legend> User creation form</legend>
-        {{ form|crispy}}
-        <input name="valider" type="submit">
-    </form>  
+ 
+
+<section class="page-section">
+    <div class="container">
+        <!-- register Form -->
+        <div class="row justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                <legend> Create your account !</legend>
+                {{ form|crispy}}
+                <input name="valider" type="submit">
+            </form>                     
+        </div>     
+    </div>
+</section>
      
 {% endblock masterhead %}
