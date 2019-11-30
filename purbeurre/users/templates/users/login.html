@@ -4,28 +4,24 @@
 
 
 {% block masterhead %}
-
-<section class="page-section">
-    <div class="container">
-        <!-- Login Form -->
-        <div class="row justify-content-center">
-            <form method="post">
-                {% csrf_token %}
-                <legend> Login page</legend>
-                {{ form|crispy}}
-                <input name="valider" type="submit">
-            </form>                      
+    <header class="page-section masthead jumbotron d-flex align-items-center min-vh-100 text-light">
+        <div class="container">
+            <!-- Login Form -->
+            <div class="row justify-content-center">
+                <form method="post">
+                    {% csrf_token %}
+                    <legend> Login page</legend>
+                    {{ form|crispy}}
+                    <input name="valider" type="submit">
+                </form>                      
+            </div>
+            <!-- Spacing -->
+            <hr class="divider my-4">
+            <!-- Signup link -->
+            <div class="row justify-content-center">
+                <p>No account ? You can signup<a href="{% url 'signup' %}"> here</a> ! </p>  
+            </div>      
         </div>
-        <!-- Spacing -->
-        <hr class="divider my-4">
-        <!-- Signup link -->
-        <div class="row justify-content-center">
-            <p>No account ? You can signup<a href="{% url 'signup' %}"> here</a> ! </p>  
-        </div>      
-    </div>
-</section>
-
- 
-     
+    </header>    
 {% endblock masterhead %}
     

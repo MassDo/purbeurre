@@ -3,22 +3,22 @@
 {% load crispy_forms_tags %}
 
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/css/custom.css' %}">
+{% endblock css %}
+
 {% block masterhead %}
-
- 
-
-<section class="page-section">
+<header class="masthead text-white jumbotron d-flex align-items-center min-vh-50 page-section">
     <div class="container">
         <!-- register Form -->
         <div class="row justify-content-center">
             <form method="post">
                 {% csrf_token %}
-                <legend> Create your account !</legend>
+                <legend > Create your account !</legend>
                 {{ form|crispy}}
                 <input name="valider" type="submit">
             </form>                     
         </div>     
     </div>
-</section>
-     
+</header> 
 {% endblock masterhead %}

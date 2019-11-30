@@ -63,7 +63,7 @@
                   <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'account-account' %}"{% else %}href="{% url 'login' %}"{% endif %}><i class="fas fa-user fa-3x"></i></a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{% url 'favorites-favorites' %}"><img src="{% static 'img/icons/carrot50.png' %}"></a>
+                  <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'favorites-favorites' %}"{% else %}href="{% url 'login' %}"{% endif %}><img src="{% static 'img/icons/carrot50.png' %}"></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'logout' %}"{% else %}href="{% url 'search-search' %}"{% endif %}><i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
