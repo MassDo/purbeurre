@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
+   
 {% block masterhead %}
     <header class="page-section masthead jumbotron d-flex align-items-center min-vh-100 text-light">
         <div class="container">
@@ -10,7 +10,7 @@
             <div class="row justify-content-center">
                 <form method="post">
                     {% csrf_token %}
-                    <legend> Login page</legend>
+                    <legend> Se connecter</legend>
                     {{ form|crispy}}
                     <input name="valider" type="submit">
                 </form>                      
@@ -19,7 +19,7 @@
             <hr class="divider my-4">
             <!-- Signup link -->
             <div class="row justify-content-center">
-                <p>No account ? You can signup<a href="{% url 'signup' %}"> here</a> ! </p>  
+                <p>Pas de compte ? <a href="{% url 'signup' %}">Enregistrez-vous </a>!</p>  
             </div>      
         </div>
     </header>    

@@ -5,7 +5,6 @@
 {% block css %}
   <link rel="stylesheet" href="{% static 'search/css/custom.css' %}">
 {% endblock css %}
-  
 
 <!-- Product searched -->
 {% block masterhead %}
@@ -13,7 +12,13 @@
         <div class="container">
           <div class="row h-30 align-items-center justify-content-center text-center">
               <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vos aliments favoris !</h1>
+                
+                {% if products %}
+                  <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vos aliments favoris !</h1>
+                {% else %}
+                  <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vous n'avez pas encore de produits enregistrés !</h1>
+                {% endif %}
+                  
               </div>
           </div>
         </div>
@@ -24,91 +29,29 @@
 {% block results %}
 <section class="page-section" id="story">
     <div class="container">
-  
-      <!-- Row 1 -->
       <div class="row">
-        <!-- Colette -->
-        <div class="col-lg-4 col-md-4 text-center custom-div ">
-          <div class="mt-5 "> 
-            <!-- Prod -->
-            <a class="image-container" href="{% url 'product-product' %}">
-              <img src="https://via.placeholder.com/250x150" alt="">
-              <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
-            </a>
-            <h3 class="h4 mb-2">Nom aliment</h3>
-            <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-          </div>
-        </div>
-        <!-- Prod -->
-        <div class="col-lg-4 col-md-4 text-center custom-div">
-          <div class="mt-5 "> 
-            <!-- image -->
-            <a class="image-container" href="{% url 'product-product' %}">
-              <img src="https://via.placeholder.com/250x150" alt="">
-              <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
-            </a>
-            <h3 class="h4 mb-2">Nom aliment</h3>
-            <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-            
-          </div>
-        </div>
-        <!-- Prod -->
-        <div class="col-lg-4 col-md-4 text-center">
+
+        <!-- For testing we test with ONLY 3 FAVORITES PROD  -->
+        {% for product in products %}
+          <div class="col-lg-4 col-md-4 text-center custom-div ">
             <div class="mt-5 "> 
-              <!-- image -->
-              <a class="image-container" href="{% url 'product-product' %}">
-                <img src="https://via.placeholder.com/250x150" alt="">
-                <img class ="nutriscore" src="{% static 'search/img/c.png' %}" alt="">
+
+              <!-- Prod image and link -->
+              <a class="image-container" href="{% url 'product-product' prod_id=product.id %}">
+                <img src="{{ product.image }}" alt="">           
+                <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
               </a>
-              <h3 class="h4 mb-2">Nom aliment</h3>
+
+              <!-- Prod name and suppression -->
+              <h3 class="h4 mb-2">{{ product.name }}</h3>
               <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-              
+
             </div>
-          </div>
+          </div>          
+        {% endfor %}
+
       </div>
 
-      <!-- Row 2 -->
-      <div class="row">
-          <!-- Colette -->
-          <div class="col-lg-4 col-md-4 text-center">
-            <div class="mt-5 "> 
-              <!-- Prod -->
-              <a class="image-container" href="{% url 'product-product' %}">
-                <img src="https://via.placeholder.com/250x150" alt="">
-                <img class ="nutriscore" src="{% static 'search/img/d.png' %}" alt="">
-              </a>
-              <h3 class="h4 mb-2">Nom aliment</h3>
-              <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-              
-            </div>
-          </div>
-          <!-- Prod -->
-          <div class="col-lg-4 col-md-4 text-center">
-            <div class="mt-5 "> 
-              <!-- image -->
-              <a class="image-container" href="{% url 'product-product' %}">
-                <img src="https://via.placeholder.com/250x150" alt="">
-                <img class ="nutriscore" src="{% static 'search/img/e.png' %}" alt="">
-              </a>
-              <h3 class="h4 mb-2">Nom aliment</h3>
-              <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-              
-            </div>
-          </div>
-          <!-- Prod -->
-          <div class="col-lg-4 col-md-4 text-center">
-              <div class="mt-5 "> 
-                <!-- image -->
-                <a class="image-container" href="{% url 'product-product' %}">
-                  <img src="https://via.placeholder.com/250x150" alt="">
-                  <img class ="nutriscore" src="{% static 'search/img/b.png' %}" alt="">
-                </a>
-                <h3 class="h4 mb-2">Nom aliment</h3>
-                <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
-                
-              </div>
-            </div>
-        </div>
     </div>
   </section>
 {% endblock results %}    

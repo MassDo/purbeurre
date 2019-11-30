@@ -38,9 +38,19 @@
 
 <body id="page-top">
 
+  <!-- Message if exists -->
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}                 
+  {% endif %}
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+
+      <!-- Brand -->
       <a href="/" class="navbar-brand js-scroll-trigger">
         <img src="{% static 'img/icons/pb50.png' %}">
         Pur Beurre</a>
@@ -48,6 +58,8 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse" id="navbar5">
+
+          <!-- Search form -->
           <form class="m-2 form-inline ml-auto " action="{% url 'search-results' %}">
             <div class="input-group">
                 <input type="text" class="form-control border border-right-0" placeholder="Rechercher">
@@ -58,6 +70,8 @@
                 </span>
             </div>
           </form>
+
+          <!-- icones -->
           <ul class="navbar-nav">
               <li class="nav-item active">
                   <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'account-account' %}"{% else %}href="{% url 'login' %}"{% endif %}><i class="fas fa-user fa-3x"></i></a>
