@@ -1,12 +1,8 @@
-a.image-container {
+div.image-container {
     position: relative;
+    display: block;
 }
 
-img.nutriscore {
-    position: absolute;
-    top: -95px;
-    right: -95px;
-}
 
 /* div.custom-div {
     margin-right: 10px;
@@ -16,8 +12,8 @@ img.nutriscore {
 @media(min-width: 991px ){
 
     header.masthead.masthead-custom {
-        height: 40vh;
-        min-height: 15rem;
+        height: 30vh;
+        min-height: 13rem;
         padding-top: 30x;
     }
 

@@ -29,16 +29,20 @@
 {% block results %}
 <section class="page-section" id="story">
     <div class="container">
-      <div class="row">
+
+      <!-- Row of 3 prod max -->
+      <div class="row justify-content-center">
 
         <!-- For testing we test with ONLY 3 FAVORITES PROD  -->
+        
         {% for product in products %}
-          <div class="col-lg-4 col-md-4 text-center custom-div ">
-            <div class="mt-5 "> 
+
+          <!-- Image container -->
+          <div class="col-lg-4 col-md-4 text-center mt-5 image-container ">
 
               <!-- Prod image and link -->
-              <a class="image-container" href="{% url 'product-product' prod_id=product.id %}">
-                <img src="{{ product.image }}" alt="">           
+              <a class="custom-img" href="{% url 'product-product' prod_id=product.id %}">
+                <img class="custom-img" src='{{ product.image }}' alt="">           
                 <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
               </a>
 
@@ -46,11 +50,27 @@
               <h3 class="h4 mb-2">{{ product.name }}</h3>
               <a href="{% url 'favorites-favorites' %}"><i class="fa fa-floppy-o" aria-hidden="true"></i><span class="text-muted">  Supprimer l'aliment</span></a>
 
-            </div>
-          </div>          
-        {% endfor %}
+          </div>
 
+        {% endfor %}
       </div>
+
+      <!-- Pagination for futur dev -->
+      <!-- <div class="row justify-content-center">
+        <nav aria-label="Page navigation example ">
+          <ul class="pagination justify-content-center mt-5">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div> -->
 
     </div>
   </section>
