@@ -43,8 +43,10 @@
 
               <!-- Prod image and link -->
               <a class="custom-img" href="{% url 'product-product' prod_id=product.id %}">
-                <img class="custom-img" src='{{ product.image }}' alt="">           
-                <img class ="nutriscore" src="{% static 'search/img/a.png' %}" alt="">
+                <img class="custom-img" src='{{ product.image }}' alt="">
+                {% with 'search/img/'|add:product.nutriscore|add:'.png' as img_static %}
+                  <img class ="nutriscore" src="{% static img_static %}" alt="">
+                {% endwith %}
               </a>
 
               <!-- Prod name and suppression -->
@@ -61,7 +63,6 @@
         {% endfor %}
       </div>
 
-      <!-- Pagination -->
       <!-- <div class="row justify-content-center">
         <nav aria-label="Page navigation example ">
           <ul class="pagination justify-content-center mt-5">
@@ -76,7 +77,7 @@
             </li>
           </ul>
         </nav>
-      </div> -->
+      </div>
 
     </div>
   </section>

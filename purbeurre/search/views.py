@@ -23,13 +23,17 @@ def results(request):
 
     if request.method == 'POST':
 
-        prod_id = request.POST.get('prod_id') #faire le form et changer le nom de variable
-        product = Product.objects.get(id=prod_id)
-        current_user = request.user
-        product.user.add(current_user)
-        product.save()
+        if request.user.is_authenticated:
 
-        return redirect('favorites-favorites')
+            prod_id = request.POST.get('prod_id') #faire le form et changer le nom de variable
+            product = Product.objects.get(id=prod_id)
+            current_user = request.user
+            product.user.add(current_user)
+            product.save()
+
+            return redirect('favorites-favorites')
+        else:
+            return redirect('login')
 
     else:
         form_search = FoodSearchForm()
