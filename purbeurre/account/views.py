@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from search.forms import FoodSearchForm
 
 
 def account(request):
@@ -12,7 +12,8 @@ def account(request):
 
     context = dict(
         username = username,
-        email = email
+        email = email,
+        form_search = FoodSearchForm()
     )
 
     return render(request, 'account/account.html', context)

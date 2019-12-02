@@ -9,7 +9,12 @@
     <meta name="author" content="">
 
     <!-- title -->
+    
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
     <title>Creative - Start Bootstrap Theme</title>
+    {% endif %}
 
     <!-- Font Awesome Icons -->
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css"> 
@@ -57,9 +62,11 @@
         <div class="navbar-collapse collapse" id="navbar5">
 
             <!-- Search form -->
-            <form class="m-2 form-inline ml-auto " action="{% url 'search-results' %}">
+            <form method='POST' class="m-2 form-inline ml-auto" action="{% url 'search-search' %}">
+              {% csrf_token %}
               <div class="input-group">
-                  <input type="text" class="form-control border border-right-0" placeholder="Rechercher">
+                  <!-- <input type="text" class="form-control border border-right-0" placeholder="Rechercher"> -->
+                  {{ form_search.user_input }}
                   <span class="input-group-append">
                     <button class="btn btn-outline-secondary border border-left-0" type="submit">
                         <i class="fa fa-search"></i>

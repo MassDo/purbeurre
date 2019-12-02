@@ -3,6 +3,24 @@ div.image-container {
     display: block;
 }
 
+.enr-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*input has OS specific font-family*/
+    color: rgb(69, 149, 15);
+    cursor: pointer;
+}
+.enr-button:hover {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*input has OS specific font-family*/
+    color: rgb(69, 149, 15);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 /* div.custom-div {
     margin-right: 10px;

@@ -15,7 +15,7 @@
             <form method="post">
                 {% csrf_token %}
                 <legend > Création de votre compte !</legend>
-                {{ form|crispy}}
+                {{ reg_form|crispy}}
                 <input name="valider" type="submit">
             </form>                     
         </div>     

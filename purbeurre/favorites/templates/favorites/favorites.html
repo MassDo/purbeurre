@@ -4,6 +4,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'search/css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'favorites/css/custom.css' %}">
 {% endblock css %}
 
 <!-- Product searched -->
@@ -14,9 +15,9 @@
               <div class="col-lg-10 align-self-end">
                 
                 {% if products %}
-                  <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vos aliments favoris !</h1>
+                  <h1 class="text-uppercase text-white font-weight-bold prod-title-custom fav-title-custom">Vos aliments favoris !</h1>
                 {% else %}
-                  <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">Vous n'avez pas encore de produits enregistrés !</h1>
+                  <h2 class="text-uppercase text-white font-weight-bold prod-title-custom fav-title-custom">   Vous n'avez pas encore de produits enregistrés !</h1>
                 {% endif %}
                   
               </div>

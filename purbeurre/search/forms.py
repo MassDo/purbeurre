@@ -1,5 +1,4 @@
 from django import forms
-from product.models import Product
 
 
 class FoodSearchForm(forms.Form):
@@ -8,6 +7,7 @@ class FoodSearchForm(forms.Form):
         with the autocompletion help.
     """
     user_input = forms.CharField(
-        label='choisissez un aliment',
-        required=False
+        label='user_input',
+        widget=forms.TextInput(attrs={'placeholder': 'Rechercher'}),
+        required=True
     )
