@@ -65,8 +65,8 @@ class Product(models.Model):
     # Manager
     objects = ProductManager()
 
-    name = models.CharField(max_length=50)
-    category = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
     image = models.URLField(max_length=200)
     link = models.URLField(max_length=200) 
     nutriscore = models.CharField(max_length=50)    

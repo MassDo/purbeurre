@@ -40,57 +40,57 @@
   </head>
 
   <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+      <!-- Brand -->
+      <a href="/" class="navbar-brand js-scroll-trigger">
+        <img src="{% static 'img/icons/pb50.png' %}">
+        Pur Beurre</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbar5">
+        <!-- Search form -->
+        <form method='POST' class="m-2 form-inline ml-auto" action="{% url 'search-search' %}">
+          {% csrf_token %}
+          <div class="input-group">
+              <!-- <input type="text" class="form-control border border-right-0" placeholder="Rechercher"> -->
+              {{ form_search.user_input }}
+              <span class="input-group-append">
+                <button class="btn btn-outline-secondary border border-left-0" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+              </span>
+          </div>
+        </form>
+        <!-- icones -->
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'account-account' %}"{% else %}href="{% url 'login' %}"{% endif %}><i class="fas fa-user fa-3x"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'favorites-favorites' %}"{% else %}href="{% url 'login' %}"{% endif %}><img src="{% static 'img/icons/carrot50.png' %}"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'logout' %}"{% else %}href="{% url 'search-search' %}"{% endif %}><i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- Message if exists -->
-    {% if messages %}
+
+    <!-- {% if messages %}
     {% for message in messages %}
+    
       <div class="alert alert-{{ message.tags }}">
         {{ message }}
       </div>
     {% endfor %}                 
-    {% endif %}
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-
-        <!-- Brand -->
-        <a href="/" class="navbar-brand js-scroll-trigger">
-          <img src="{% static 'img/icons/pb50.png' %}">
-          Pur Beurre</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar5">
-
-            <!-- Search form -->
-            <form method='POST' class="m-2 form-inline ml-auto" action="{% url 'search-search' %}">
-              {% csrf_token %}
-              <div class="input-group">
-                  <!-- <input type="text" class="form-control border border-right-0" placeholder="Rechercher"> -->
-                  {{ form_search.user_input }}
-                  <span class="input-group-append">
-                    <button class="btn btn-outline-secondary border border-left-0" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                  </span>
-              </div>
-            </form>
-
-            <!-- icones -->
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'account-account' %}"{% else %}href="{% url 'login' %}"{% endif %}><i class="fas fa-user fa-3x"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'favorites-favorites' %}"{% else %}href="{% url 'login' %}"{% endif %}><img src="{% static 'img/icons/carrot50.png' %}"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" {% if user.is_authenticated %}href="{% url 'logout' %}"{% else %}href="{% url 'search-search' %}"{% endif %}><i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+    {% endif %}    -->
+    
     <!-- Masthead -->  
     {% block masterhead %}    
     {% endblock masterhead %}

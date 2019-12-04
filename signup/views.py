@@ -13,7 +13,7 @@ def signup(request):
                 reg_form.save()
                 username = reg_form.cleaned_data.get('username')
                 messages.success(request, f'{username}, your account has been created! You are now able to log in')
-                return render(request, 'search/search.html')
+                return render(request, 'search/search.html', locals()) 
     else:
         reg_form = UserRegistrationForm()
     return render(request, 'signup/signup.html', locals())
