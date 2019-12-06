@@ -37,6 +37,15 @@ urlpatterns = [
     path('legals/', include('legals.urls')),
 
     path('signup/', signup_views.signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html', authentication_form=UserLoginForm, extra_context={'form_search':search_form}), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html', extra_context={'form_search':search_form}), name='logout'),
+    path('login/', auth_views.LoginView.as_view(
+        template_name='users/login.html',
+        authentication_form=UserLoginForm,
+        extra_context={'form_search':search_form}),
+        name='login'
+    ),
+    path('logout/', auth_views.LogoutView.as_view(
+        template_name='users/logout.html',
+        extra_context={'form_search':search_form}),
+        name='logout'
+    ),
 ]

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from product.models import Product
 from search.forms import FoodSearchForm
 

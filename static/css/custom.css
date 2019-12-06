@@ -17,6 +17,18 @@ a.custom-img {
     display: inline-block;
     position: relative;
 }
+header.custom-header {
+    margin-bottom: 0px;
+}
+#alert-fixed-custom {
+    position:fixed; 
+    opacity: 0.75;
+    top: 40vh; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:30px
+}
 @media(max-width: 767px ){
 
     img.custom-img {

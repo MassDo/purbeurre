@@ -20,6 +20,10 @@ div.image-container {
     text-decoration: underline;
     cursor: pointer;
 }
+#account-info{
+    min-height: 70vh;
+}
+
 
 
 /* div.custom-div {
