@@ -27,6 +27,7 @@ header.custom-header {
     overflow-x: hidden;
     /* add padding to account for vertical scrollbar */
     padding-right: 20px;
+    z-index: 2000;
 }
 #alert-fixed-custom {
     position:fixed; 
