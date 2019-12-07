@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import FoodSearchForm
+from .forms import FoodSearchForm, FoodSearchFormMain
 from product.models import Product
 from django.contrib.auth.decorators import login_required
 
@@ -12,13 +12,25 @@ def search(request):
     """
     if request.method == 'POST':
         form_search = FoodSearchForm(request.POST)
-        if form_search.is_valid():
+        form_search_main = FoodSearchFormMain(request.POST) 
+               
+        if form_search.is_valid() and form_search.data.get('user_input'):
             user_input = form_search.cleaned_data.get('user_input')
             request.session['user_input'] = user_input
-            return redirect('search-results')
+
+        elif form_search_main.is_valid() and form_search.data.get('main_form'):
+            user_input = form_search_main.cleaned_data.get('main_form')
+            request.session['user_input'] = user_input
+
+        return redirect('search-results')
+
     else:
         form_search = FoodSearchForm()
-    return render(request, 'search/search.html', {'form_search':form_search}) 
+        form_search_main = FoodSearchFormMain()
+
+    return render(request, 'search/search.html',
+        {'form_search':form_search, 'main_form':form_search_main}
+    ) 
 
 def results(request):
     """

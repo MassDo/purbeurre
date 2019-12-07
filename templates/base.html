@@ -37,6 +37,10 @@
     <!-- Block for local custom css -->
     {% block css %}
     {% endblock css %}
+
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    
   </head>
 
   <body id="page-top">
@@ -54,7 +58,7 @@
         <!-- Search form -->
         <form method='POST' class="m-2 form-inline ml-auto" action="{% url 'search-search' %}">
           {% csrf_token %}
-          <div class="input-group">
+          <div class="input-group picform">
               <!-- <input type="text" class="form-control border border-right-0" placeholder="Rechercher"> -->
               {{ form_search.user_input }}
               <span class="input-group-append">
@@ -132,5 +136,21 @@
 
     <!-- Custom scripts for this template -->
     <script src="{% static 'js/creative.min.js' %}"></script>
+
+    <!-- JQuery Ui cdn -->
+    <!-- <script
+			  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+			  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+        crossorigin="anonymous">
+    </script> -->
+
+        <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- jquery autocomplete.js -->
+    <script src="{% static 'js/autocomplete.js' %}"></script>
   </body>
 </html>

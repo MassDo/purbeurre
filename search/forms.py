@@ -11,3 +11,14 @@ class FoodSearchForm(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'Rechercher'}),
         required=True
     )
+
+class FoodSearchFormMain(forms.Form):
+    """
+        form for the research of a product
+        with the autocompletion help.
+    """
+    main_form = forms.CharField(
+        label='main_form',
+        widget=forms.TextInput(attrs={'placeholder': 'Rechercher'}),
+        required=True
+    )

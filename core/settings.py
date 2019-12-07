@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'legals.apps.LegalsConfig', # new app LEGAL
     'users.apps.UsersConfig', # new app USERS
     'signup.apps.SignupConfig', # new app SIGNUP
+    'autocomplete.apps.AutocompleteConfig', # new application for AUTOCOMPLETE
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

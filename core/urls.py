@@ -20,6 +20,7 @@ from django.urls import path, include
 # Views
 from users import views as users_views
 from signup import views as signup_views
+from autocomplete import views as autocomplete_views
 
 # Forms
 from users.forms import UserLoginForm
@@ -35,6 +36,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('account/', include('account.urls')),
     path('legals/', include('legals.urls')),
+    path('auto/', include('autocomplete.urls')),
 
     path('signup/', signup_views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(
