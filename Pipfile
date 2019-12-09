@@ -11,6 +11,10 @@ django-crispy-forms = "*"
 requests = "*"
 django-heroku = "*"
 gunicorn = "*"
+pytest = "*"
+pytest-django = "*"
+pytest-cov = "*"
+mixer = "*"
 
 [requires]
 python_version = "3.6"
