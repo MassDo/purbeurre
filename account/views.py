@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from search.forms import FoodSearchForm
 
 
+@login_required
 def account(request):
     """
         view of the user account

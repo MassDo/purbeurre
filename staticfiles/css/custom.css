@@ -1,0 +1,62 @@
+.page-section {
+    padding: 4rem 0;
+}
+
+img.custom-img {
+    max-height: 25vh;
+    max-width: 25vw;
+}
+img.nutriscore {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    height: 35px;
+    width: 90px;
+}
+a.custom-img {
+    display: inline-block;
+    position: relative;
+}
+header.custom-header {
+    margin-bottom: 0px;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+    z-index: 2000;
+}
+#alert-fixed-custom {
+    position:fixed; 
+    opacity: 0.75;
+    top: 40vh; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:30px
+}
+@media(max-width: 767px ){
+
+    img.custom-img {
+        max-width: 70vw;
+        max-height: 60vh;
+    }
+
+    img.nutriscore {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        height: 35px;
+        width: 90px;
+    }
+}
+@media(min-width: 1800px) {
+    img.custom-img {
+        max-height: 25vh;
+        max-width: 350px;
+    }
+
+}

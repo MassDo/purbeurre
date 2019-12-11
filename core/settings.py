@@ -152,6 +152,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # AFTER LOGIN
 LOGIN_REDIRECT_URL = 'search-search'
 
+# AFTER LOGIN_REQUIRED
+LOGIN_URL = 'login'
+
 # PostGreSQL parameters
 client_encoding: 'UTF8'
 default_transaction_isolation: 'read committed'

@@ -1,9 +1,18 @@
+from django.test import SimpleTestCase
 from django.urls import reverse, resolve
+from account.views import account
 
-def test_account_url():
-    """
-        test if url is given from view name and parameter,
-        and if view name is resolve from this url.
-    """
-    path = reverse('account-account')
-    assert resolve(path).view_name == 'account-account'
+
+class TestUrls(SimpleTestCase):
+
+    
+    def test_account_name_is_reversed_and_resolved(self):
+        """
+            Check if the name of url is linked to the
+            correct path. And if the correct template is returned
+        """
+        url = reverse("account-account")
+        # name linked to url
+        self.assertEqual(resolve(url).view_name, 'account-account')
+        # url linked to the correct view function
+        self.assertEqual(resolve(url).func, account)
