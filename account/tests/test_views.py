@@ -24,7 +24,7 @@ class TestViews(TestCase):
         # test redirect to login then to account
         self.assertEqual(response.url, reverse('login') + '?next=/account/')
 
-    def test_account_redirect_if_user_is_logged(self):  
+    def test_account_template_if_user_is_logged(self):  
         # User login     
         login = self.c.login(
             email='testuser@testuser.com',
