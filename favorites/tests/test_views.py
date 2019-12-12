@@ -18,6 +18,7 @@ class TestViews(TestCase):
         self.c = Client()
         # Path
         self.favorites_url = reverse('favorites-favorites')
+        # Form transmitted
         self.form = FoodSearchForm()
         
     def test_favorites_redirect_to_login_if_user_not_logged(self):        
