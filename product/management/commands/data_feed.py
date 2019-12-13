@@ -31,7 +31,7 @@ class Command(BaseCommand):
         for cat in categories:
             # download data
             raw_data = download_products(cat)
-            # delete incomplete or empty set
+            # delete incomplete or empty set or duplicate product
             data_checked = check_products(raw_data, prod_keys, nutri_keys)
             # formating
             final_data = formating_data(data_checked)

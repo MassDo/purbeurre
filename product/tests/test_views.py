@@ -8,7 +8,7 @@ class TestViews(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # Set up data fonce for all the tests of TestViews
+        # Set up data once for all the tests of TestViews
         # Product creation
         cls.product = Product.objects.create(
             name = 'test_prod_name',

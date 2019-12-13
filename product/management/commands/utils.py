@@ -33,7 +33,7 @@ def check_products(products, prod_keys, nutri_keys):
         products is a list.
 
         Delete product with incomplete fields from the products list
-        and return a list of complete products.
+        and return a list of complete products with no duplicate product.
     """
     products_checked = [] 
     for prod in products:
@@ -66,31 +66,36 @@ def check_products(products, prod_keys, nutri_keys):
                 break
         if product_is_complete and nutriment_is_complete:
             products_checked.append(prod_checked)
+    # If duplicate products keep only one
+    products_checked_unique = []
+    known_prod_name = []
+    for prod in prod_checked:
+        if prod["product_name"] not in known_prod_name:
+            products_checked_unique.append(prod)
+            known_prod_name.append(prod["product_name"])
 
-    return products_checked
+    return products_checked_unique
 
 
 def formating_data(products):
     """
-        this function is into a dict of one product.
+        Parameter products is a list of product(dict)
+        This function is into each product of the parameter (products list),
         Merging the nutriment dict into product dict
-        and deleting the nutriment key from product's keys.
+        And deleting the nutriment key from product's keys.
 
         Example:
         
-        >>> formating_data([\
-        {"key0":1, "key1":2, "nutriments":{"key3":3, "key4":4}},\
-        {"key0":1, "key1":2, "nutriments":{"key3":3, "key4":4}}])
-        [{'key0': 1, 'key1': 2, 'key3': 3, 'key4': 4},\
- {'key0': 1, 'key1': 2, 'key3': 3, 'key4': 4}]
+        >>> formating_data([{"key0":1, "key1":2, "nutriments":{"key3":3, "key4":4}}, {"key0":1, "key1":2, "nutriments":{"key3":3, "key4":4}}])
+        [{'key0': 1, 'key1': 2, 'key3': 3, 'key4': 4}, {'key0': 1, 'key1': 2, 'key3': 3, 'key4': 4}]
 
     """
     products_format = []
     for prod in products:
         for key in list(prod):
             if key is "nutriments":
-                temp = prod[key]
+                temp_nutriments_dict = prod[key]
                 del prod[key]
-                prod = {**prod, **temp}
+                prod = {**prod, **temp_nutriments_dict}
                 products_format.append(prod)
     return products_format
