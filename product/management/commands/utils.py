@@ -1,6 +1,6 @@
 """
     functions used in data_feed command
-    In order to get data from OFF API into the 
+    In order to get data from OpenFoodFacts API into the 
     local database.
 """
 import requests
@@ -32,22 +32,18 @@ def check_products(products, prod_keys, nutri_keys):
     """
         products is a list.
 
-        delete product with incomplete fields from the products list
+        Delete product with incomplete fields from the products list
         and return a list of complete products.
-        nutri_keys and prod_keys are 
     """
-    products_checked = []     
-
+    products_checked = [] 
     for prod in products:
         prod_checked = {} 
         product_is_complete = True
-
         for key1 in prod_keys:
             try:
                 if key1 == "nutriments":
                     nut_checked = {}
                     nutriment_is_complete = True 
-
                     for key2 in nutri_keys:
                         try:                    
                             if prod[key1][key2] is not "":
@@ -58,7 +54,6 @@ def check_products(products, prod_keys, nutri_keys):
                         except:
                             nutriment_is_complete = False
                             break
-
                     if nutriment_is_complete:
                         prod_checked[key1] = nut_checked
                 elif key1 is not "nutriment" and prod[key1] is not "":
@@ -69,7 +64,6 @@ def check_products(products, prod_keys, nutri_keys):
             except:
                 product_is_complete = False
                 break
-
         if product_is_complete and nutriment_is_complete:
             products_checked.append(prod_checked)
 

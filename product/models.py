@@ -6,15 +6,12 @@ class ProductManager(models.Manager):
     """
         Method used for operations at the "table" scale
     """
-    def find_user(self, product):
-        pass
-    
+
     def best_product(self, user_input):
         """
             return the best product list
             from the user input (product name)
         """
-        
         # get the products corresponding to the user input
         # if there is multiple products for the same name it gives the worst product
         user_product = self.filter(name=user_input).last()
@@ -32,7 +29,7 @@ class ProductManager(models.Manager):
                     'salt',
                 )
             except:
-                print('erreur dans la requetre de filtre de categorie et de trie')
+                print('erreur dans la requete de filtre de categorie et de trie')
             # adding better products to the list
             better_prod = []
             for prod in cat_ordered:
@@ -58,22 +55,20 @@ class ProductManager(models.Manager):
         
 
 class Product(models.Model):
-
     """
         class representing the Product table
     """
     # Manager
     objects = ProductManager()
-
+    # Attributes
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     image = models.URLField(max_length=200)
     link = models.URLField(max_length=200) 
-    nutriscore = models.CharField(max_length=50)    
-    # fat, salt, sugars in g for 100g portion
-    fat = models.FloatField()
-    salt = models.FloatField()
-    sugars = models.FloatField()
+    nutriscore = models.CharField(max_length=50)  
+    fat = models.FloatField() # g for 100g
+    salt = models.FloatField() # g for 100g
+    sugars = models.FloatField() # g for 100g
     user = models.ManyToManyField(CustomUser)
     
     class Meta:
@@ -81,13 +76,3 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-    
-    
-    # pour "ajouter un user a un produit" 
-    # il faut creer un objet produit
-    # p = Produit.create(att=...)
-    # puis creer un objet utilisateur
-    # u = User(...)
-    # Les relier p.user.add(u)
-    # Peut etre fait en une seule étape
-    # p.user.create(att=..)
