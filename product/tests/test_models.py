@@ -90,7 +90,7 @@ class TestModels(TestCase):
             0
         )
 
-    def test_best_product_no_user_arg(self):
+    # def test_best_product_no_user_arg(self):
 
 # Tester les méthodes du Manager
     # Si la BDD est vide

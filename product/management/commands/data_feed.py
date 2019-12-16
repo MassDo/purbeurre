@@ -4,10 +4,14 @@ from .utils import download_products,check_products, formating_data
 from product.models import Product
 
 class Command(BaseCommand):
-    help = 'ma nouvelle commande'
-
-    # def add_arguments(self, parser):
-    #     parser.add_argument('poll_ids', nargs='+', type=int)
+    """
+        New command to implement the local database with products from
+        OpenFoodFacts API. The products are download from the categories list
+        into the folowing handle method. Use "python manage.py data_feed" or
+        "./manage.py data_feed" to launch the script.
+    """
+    help = '''data_feed implement the database 
+    with checked products from OpenfoodFacts API'''
 
     def handle(self, *args, **options):
         categories = [
@@ -25,19 +29,18 @@ class Command(BaseCommand):
         ]
         nutri_keys = [
             "sugars_100g",
-            "salt_100g",     # sub-fields of "nutriments" api fields
+            "salt_100g",     # Sub-fields of "nutriments" api fields
             "fat_100g"
         ]
         for cat in categories:
-            # download data
-            raw_data = download_products(cat)
-            # delete incomplete or empty set or duplicate product
+            # Download data from OpenFoodFacts API
+            raw_data = download_products(cat, 25)
+            # Delete incomplete, empty set or duplicate product
             data_checked = check_products(raw_data, prod_keys, nutri_keys)
-            # formating
+            # Formating
             final_data = formating_data(data_checked)
-            # [{'key0': 1, 'key1': 2 },{'key0': 1, 'key1': 2}]
+            # Create the product object into local database
             for prod in final_data:
-                # creer les lignes de la table
                 Product.objects.create(
                     name = prod['product_name'],
                     category = cat,

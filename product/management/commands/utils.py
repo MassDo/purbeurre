@@ -5,27 +5,29 @@
 """
 import requests
 
-def download_products(categorie):
+def download_products(categorie, size):
     """
         get the rows products from a categorie 
-        from the API in .json
-        
+        from the API in .json 
     """
     api_payload = {
                     "action": "process",
-                    "tagtype_0": "categories",
+                    "tagtype_0": "categories",  
                     "tag_contains_0": "contains",
                     "tag_0": categorie,
-                    "page_size": 25, # change here for more products by category
+                    "page_size": size, # change here for more products by category
                     "json": 1
     }
-
     try:
-        resp = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?", params=api_payload).json()
-        products_unchecked = resp["products"]    
-        return products_unchecked
-    except:
-        print("Error whith api request")
+        response = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?", params=api_payload)
+        if response.status_code == 200:
+            response = response.json()
+            products_unchecked = response["products"]    
+            return products_unchecked
+        else:
+            print(f'Bad response_status_code: {response.status_code} !')
+    except requests.exceptions.RequestException as e:
+        print(f"\nPlease check you internet connection ! \n\n {e}")
 
 
 def check_products(products, prod_keys, nutri_keys):
@@ -69,7 +71,7 @@ def check_products(products, prod_keys, nutri_keys):
     # If duplicate products keep only one
     products_checked_unique = []
     known_prod_name = []
-    for prod in prod_checked:
+    for prod in products_checked:
         if prod["product_name"] not in known_prod_name:
             products_checked_unique.append(prod)
             known_prod_name.append(prod["product_name"])
@@ -77,7 +79,7 @@ def check_products(products, prod_keys, nutri_keys):
     return products_checked_unique
 
 
-def formating_data(products):
+def formatting_data(products):
     """
         Parameter products is a list of product(dict)
         This function is into each product of the parameter (products list),
@@ -98,4 +100,5 @@ def formating_data(products):
                 del prod[key]
                 prod = {**prod, **temp_nutriments_dict}
                 products_format.append(prod)
+                
     return products_format
