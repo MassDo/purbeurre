@@ -145,7 +145,7 @@ class TestUtils(TestCase):
             "page_size": 5, 
             "json": 1
         }
-        # Valid products_unchecked liste return by download_products
+        # Valid products_unchecked list returned by download_products
         cls.products_unchecked = [
             {
                 'product_name': 'test_prod_1', 
@@ -193,14 +193,14 @@ class TestUtils(TestCase):
                 'nutriments': {'sugars_100g': '1', 'salt_100g': '2', 'fat_100g': '3'}
             },
             {
-                'product_name': 'test_prod_1', 
+                'product_name': 'test_prod_1',  # Duplicate product
                 'image_url': 'test_im_url_1', 
                 'url': 'test_url_1', 
                 'nutrition_grades': 'a', 
                 'nutriments': {'sugars_100g': '1', 'salt_100g': '2', 'fat_100g': '3'}
             },
             {
-                'product_name': '', 
+                'product_name': '', # Empty name
                 'image_url': 'test_im_url_2', 
                 'url': 'test_url_2', 
                 'nutrition_grades': 'b', 
@@ -211,8 +211,22 @@ class TestUtils(TestCase):
                 'image_url': 'test_im_url_3', 
                 'url': 'test_url_3', 
                 'nutrition_grades': 'b', 
-                'nutriments': {'sugars_100g': '2', 'salt_100g': '', 'fat_100g': '3'}
+                'nutriments': {'sugars_100g': '2', 'salt_100g': '', 'fat_100g': '3'} # Empty salt_100g value
             },
+            {
+                'product_name': 'test_prod_4', 
+                'image_url': 'test_im_url_4', 
+                'url': 'test_url_4', 
+                'nutrition_grades': 'b', 
+                'nutriments': {'': '2', 'salt_100g': '', 'fat_100g': '3'} # Empty nytriment key sugars_100g
+            },
+            {
+                '': 'test_prod_5', # Empty key
+                'image_url': 'test_im_url_5', 
+                'url': 'test_url_5', 
+                'nutrition_grades': 'a', 
+                'nutriments': {'sugars_100g': '1', 'salt_100g': '2', 'fat_100g': '3'}
+            }
             
         ]
         # Result list after check_product

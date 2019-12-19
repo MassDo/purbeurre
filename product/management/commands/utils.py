@@ -54,6 +54,7 @@ def check_products(products, prod_keys, nutri_keys):
                                 nutriment_is_complete = False
                                 break
                         except:
+                            print('Nutriment incomplete for this product')
                             nutriment_is_complete = False
                             break
                     if nutriment_is_complete:
@@ -64,6 +65,7 @@ def check_products(products, prod_keys, nutri_keys):
                     product_is_complete = False
                     break
             except:
+                print('Product keys incomplete for this product')
                 product_is_complete = False
                 break
         if product_is_complete and nutriment_is_complete:

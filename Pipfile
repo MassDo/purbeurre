@@ -11,6 +11,8 @@ django-crispy-forms = "*"
 requests = "*"
 django-heroku = "*"
 gunicorn = "*"
+coverage = "*"
+django-nose = "*"
 
 [requires]
 python_version = "3.6"

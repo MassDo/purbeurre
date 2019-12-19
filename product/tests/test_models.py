@@ -1,12 +1,22 @@
 from django.test import TestCase
 from django.db.models.query import QuerySet
-from product.models import Product
+from product.models import Product, ProductManager
 from users.models import CustomUser
 
 class TestModels(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        # cls.prod_args = dict(
+        #     name = 'name_p1',
+        #     category = 'cat1',
+        #     image = 'https://static.openfoodfacts.org/images/products/761/303/624/9928/front_fr.177.400.jpg',
+        #     link = 'https://fr.openfoodfacts.org/produit/7613036249928/eau-de-vittel',
+        #     nutriscore = 'a' ,
+        #     fat = 1, # g for 100g
+        #     salt = 2, # g for 100g
+        #     sugars = 3, # g for 100g
+        # )
         # Test products instantiation
         cls.prod_1 = Product.objects.create(
             name = 'name_p1',
@@ -54,6 +64,7 @@ class TestModels(TestCase):
             cls.prod_3,
             cls.prod_4
         ]
+        # TEST USERS
         # User_1 favorites ==> all products
         cls.user_1 = CustomUser.objects.create_user(username='name_u1')
         # User_1 favorites ==> 0 products
@@ -61,11 +72,21 @@ class TestModels(TestCase):
             username='name_u2',
             email='email2@email2.com'
         )
-        # cls.user_3 = CustomUser.objects.create_user(username='name_u3')
         # Relation between product and user
         for prod in cls.products:
             # The user_1 has all the products in favorites
             prod.user.add(cls.user_1)
+
+    def test_product_manager(self):
+        prod_man = Product.objects
+        self.assertTrue(isinstance(prod_man, ProductManager))
+
+    def test_product_creation(self):
+        self.assertTrue(isinstance(self.prod_1, Product))
+
+    def test_product_att_name(self):
+        prod = Product.objects.get(name="name_p1")
+        self.assertEqual('name_p1', prod.name)
 
     def test_favorites_products_return_correct_queryset(self):
         """
@@ -77,8 +98,19 @@ class TestModels(TestCase):
                 Product.objects.favorites_products(self.user_1),
                 QuerySet
             )
+        )# Test if QuerySet object is returned.
+        self.assertTrue(
+            isinstance(
+                Product.objects.favorites_products(self.user_1),
+                QuerySet
+            )
         )
-        # Test if the objects of the QuerySet are correct
+        # Test if the objects into the QuerySet are correct for user_1
+        fav_prod = []
+        for prod in Product.objects.favorites_products(self.user_1):
+            fav_prod.append(prod)
+        self.assertEqual(self.products, fav_prod)
+        # Test if the objects of the QuerySet are correct for user_2
         fav_prod = []
         for prod in Product.objects.favorites_products(self.user_1):
             fav_prod.append(prod)
@@ -91,7 +123,6 @@ class TestModels(TestCase):
         )
 
     # def test_best_product_no_user_arg(self):
-
 # Tester les méthodes du Manager
     # Si la BDD est vide
     # Si la BDD est implémentée

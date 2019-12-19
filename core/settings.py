@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crispy_forms', # 3rd party
+    'django_nose', # 3rd party
 
     'search.apps.SearchConfig', # new app SEARCH
     'favorites.apps.FavoritesConfig', # new app FAVORITES
@@ -163,3 +164,15 @@ timezone: 'UTC'
 # Configure Django App for Heroku.
 
 django_heroku.settings(locals())
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-html',
+    '--cover-package=product',
+    '--verbosity=1'
+    # '--cover-package=account, favorites, legals, product, search, signup, users',
+]
