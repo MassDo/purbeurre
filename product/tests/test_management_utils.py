@@ -112,6 +112,25 @@ def mocked_requests_get(*args, **kwargs):
             },
             200
         )
+    # If correct uri and payload but non existing category.
+    elif (
+        args[0] == 'https://fr.openfoodfacts.org/cgi/search.pl?' and
+        kwargs['params'] == {
+                    "action": "process",
+                    "tagtype_0": "categories",  
+                    "tag_contains_0": "contains",
+                    "tag_0": 'non existing category',
+                    "page_size": 5, # change here for more products by category
+                    "json": 1
+        }):
+        # Returning empty json with 200 status
+        return MockResponse(
+            {
+                "products": [
+                ]
+            },
+            200
+        )
     return MockResponse(None, 404)
 
 # This function will be used by the mock to replace requests.get

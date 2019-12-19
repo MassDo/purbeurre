@@ -9,6 +9,12 @@ class Command(BaseCommand):
         OpenFoodFacts API. The products are download from the categories given
         as arguments to the command like the following exemple
         "python manage.py data_feed cat_1 cat_2 ... cat_n"
+
+        The products attributes (prod_keys) use for checking data, cannot be changed,
+        into the command line. They are set as handle method attributes.
+
+        The report attr of the handle method is used for,
+        console prompt report, and the tests.
     """
     help = 'Custom command that implement database from OpenFoodFact API product'
 
@@ -32,20 +38,23 @@ class Command(BaseCommand):
         good_cat = {}
         bad_cat = []
         size_by_cat = options['prod']
-        self.prod_keys = [           
+        prod_keys = [           
             "product_name",
             "image_url",
             "url",
             "nutrition_grades",
             "nutriments"
         ]
-        self.nutri_keys = [
+        nutri_keys = [
             "sugars_100g",
             "salt_100g",     # Sub-fields of "nutriments" api fields
             "fat_100g"
         ]
-        if size_by_cat[0] > 250: # Product seach size limitation
-            size_by_cat = [250]
+        if size_by_cat:
+            if size_by_cat[0] > 250: # Product seach size limitation
+                size_by_cat = [250]
+        else:
+            size_by_cat = [5] # if no size given by command call
         for cat in options['categories']:
             real_prod_implemented_by_cat = 0
             self.stdout.write(
@@ -59,8 +68,8 @@ class Command(BaseCommand):
             # Delete incomplete, empty set or duplicate product
             data_checked = check_products(
                 raw_data, 
-                self.prod_keys, 
-                self.nutri_keys
+                prod_keys, 
+                nutri_keys
             )
             # Formating dict of nutriments
             final_data = formatting_data(data_checked)
@@ -130,7 +139,6 @@ class Command(BaseCommand):
                         f'\t{cat}'
                     ),
                 )
-
 
             
 

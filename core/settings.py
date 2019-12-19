@@ -173,6 +173,6 @@ NOSE_ARGS = [
     '--with-coverage',
     '--cover-html',
     '--cover-package=product',
-    '--verbosity=1'
+    '--verbosity=1',
     # '--cover-package=account, favorites, legals, product, search, signup, users',
 ]
