@@ -12,11 +12,11 @@ class ProductManager(models.Manager):
             from the user input (product name)
         """
         # Get the products corresponding to the user input
-        user_product = self.get(name=user_input)
-        # list of better products
-        if user_product:
-            # Get the products of the user category set in order 
-            try:
+        try:
+            user_product = self.get(name=user_input)
+            # list of better products
+            if user_product:
+                # Get the products of the user category set in order 
                 prods_of_cat_ordered = self.filter(
                     category=user_product.category
                 ).order_by(
@@ -25,21 +25,19 @@ class ProductManager(models.Manager):
                     'sugars',
                     'salt',
                 )
-            except:
-                print('Erreur dans la requete de filtre de categorie et de trie')
-            # Create a better products list
-            better_prod = []
-            for prod in prods_of_cat_ordered:
-                if prod == user_product:
-                    if len(better_prod) == 0:
-                        print ('pas de meilleur produit')
-                        return better_prod
+                # Create a better products list
+                better_prod = []
+                for prod in prods_of_cat_ordered:
+                    if prod == user_product:
+                        if len(better_prod) == 0:
+                            print ('pas de meilleur produit')
+                            return better_prod
+                        else:
+                            return better_prod
                     else:
-                        return better_prod
-                else:
-                    better_prod.append(prod)
-        else:
-            print('pas de produit')
+                        better_prod.append(prod)
+        except Product.DoesNotExist as err:
+            print(f"The user input give no result {err}")
     
     def favorites_products(self, user_logged):
         """

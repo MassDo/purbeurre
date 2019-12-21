@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import FoodSearchForm, FoodSearchFormMain
 from product.models import Product
-from django.contrib.auth.decorators import login_required
 
 
 def search(request):
@@ -45,12 +44,15 @@ def results(request):
     # if the user want to add a product
     if request.method == 'POST':        
         if request.user.is_authenticated:
-            prod_id = request.POST.get('prod_id') 
-            product = Product.objects.get(id=prod_id)
-            current_user = request.user
-            product.user.add(current_user)
-            product.save()
-            messages.success(request,'Produit ajouté à vos favoris !')
+            try:
+                prod_id = request.POST.get('prod_id') 
+                product = Product.objects.get(id=prod_id)
+                current_user = request.user
+                product.user.add(current_user)
+                product.save()
+                messages.success(request,'Produit ajouté à vos favoris !')
+            except Product.DoesNotExist as err:
+                print(f"Invalid product_id ERROR: {err}")
         else:
             messages.warning(request,'vous devez etre connecté pour enregistrer un aliment')
     else:

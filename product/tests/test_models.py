@@ -3,20 +3,10 @@ from django.db.models.query import QuerySet
 from product.models import Product, ProductManager
 from users.models import CustomUser
 
-class TestModels(TestCase):
+class TestProduct(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # cls.prod_args = dict(
-        #     name = 'name_p1',
-        #     category = 'cat1',
-        #     image = 'https://static.openfoodfacts.org/images/products/761/303/624/9928/front_fr.177.400.jpg',
-        #     link = 'https://fr.openfoodfacts.org/produit/7613036249928/eau-de-vittel',
-        #     nutriscore = 'a' ,
-        #     fat = 1, # g for 100g
-        #     salt = 2, # g for 100g
-        #     sugars = 3, # g for 100g
-        # )
         # Test products instantiation
         cls.prod_1 = Product.objects.create(
             name = 'name_p1',
@@ -39,7 +29,7 @@ class TestModels(TestCase):
             sugars = 3, # g for 100g
         )
         cls.prod_3 = Product.objects.create(
-            name = 'name_p2',
+            name = 'name_p3',
             category = 'cat1',
             image = 'https://static.openfoodfacts.org/images/products/761/303/624/9928/front_fr.177.400.jpg',
             link = 'https://fr.openfoodfacts.org/produit/7613036249928/eau-de-vittel',
@@ -49,7 +39,7 @@ class TestModels(TestCase):
             sugars = 3, # g for 100g
         )
         cls.prod_4 = Product.objects.create(
-            name = 'name_p2',
+            name = 'name_p4',
             category = 'cat1',
             image = 'https://static.openfoodfacts.org/images/products/761/303/624/9928/front_fr.177.400.jpg',
             link = 'https://fr.openfoodfacts.org/produit/7613036249928/eau-de-vittel',
@@ -64,6 +54,11 @@ class TestModels(TestCase):
             cls.prod_3,
             cls.prod_4
         ]
+        cls.products_A = [
+            cls.prod_1, 
+            cls.prod_2, 
+            cls.prod_3,
+        ]
         # TEST USERS
         # User_1 favorites ==> all products
         cls.user_1 = CustomUser.objects.create_user(username='name_u1')
@@ -72,14 +67,20 @@ class TestModels(TestCase):
             username='name_u2',
             email='email2@email2.com'
         )
-        # Relation between product and user
+        # User_1 have all the products in favorites.
         for prod in cls.products:
-            # The user_1 has all the products in favorites
             prod.user.add(cls.user_1)
 
     def test_product_manager(self):
+        """
+            Test that the custom manager class 'ProductManager',
+            is called by 'objects' attribute
+        """
         prod_man = Product.objects
         self.assertTrue(isinstance(prod_man, ProductManager))
+
+    def test_product_str(self):
+        self.assertEqual(self.prod_1.__str__(), self.prod_1.name)
 
     def test_product_creation(self):
         self.assertTrue(isinstance(self.prod_1, Product))
@@ -93,12 +94,6 @@ class TestModels(TestCase):
             Serie of test with correct user and product associated to him.
         """
         # Test if QuerySet object is returned.
-        self.assertTrue(
-            isinstance(
-                Product.objects.favorites_products(self.user_1),
-                QuerySet
-            )
-        )# Test if QuerySet object is returned.
         self.assertTrue(
             isinstance(
                 Product.objects.favorites_products(self.user_1),
@@ -122,16 +117,18 @@ class TestModels(TestCase):
             0
         )
 
-    # def test_best_product_no_user_arg(self):
-# Tester les méthodes du Manager
-    # Si la BDD est vide
-    # Si la BDD est implémentée
-        # tester la méthode favorites_products
-            # si pas d'utilisateur fournie en args
-            # Si utilisateur qui n'est associé a aucun produits
-            # Si utilisateur associé à des produits
-        # Tester la méthode best_products
-            # si args incorrect ou abscents
-            # si arg ok
-                # si le prod est déja le meilleur
-                # si le produit n'est pas le meilleur
+    def test_best_product(self):
+        best = Product.objects.best_product('name_p4')
+        self.assertEqual(best, self.products_A)
+
+    def test_best_product_no_product(self):
+        self.assertRaises(
+            Product.DoesNotExist, 
+            Product.objects.best_product('incorrect name for prod')
+        )
+
+    def test_best_product_no_better_prod(self):
+        self.assertEqual(
+            Product.objects.best_product(self.prod_1.name),
+            []
+        )

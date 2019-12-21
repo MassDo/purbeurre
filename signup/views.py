@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm
 from users.forms import UserLoginForm
@@ -8,6 +8,9 @@ from search.forms import FoodSearchForm
 def signup(request):
 
     form_search = FoodSearchForm()
+    if request.user.is_authenticated:
+        return redirect('account-account')
+
     if request.method == 'POST':
             reg_form = UserRegistrationForm(request.POST)
             if reg_form.is_valid():
