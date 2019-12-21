@@ -1,6 +1,6 @@
 
 from django.core.management.base import BaseCommand
-from .utils import download_products, check_products, formatting_data
+from .utils import download_products, check_products, formatting_data, del_duplicate
 from product.models import Product
 
 class Command(BaseCommand):
@@ -55,6 +55,7 @@ class Command(BaseCommand):
                 size_by_cat = [250]
         else:
             size_by_cat = [5] # if no size given by command call
+        products_all_categories_unchecked = []
         for cat in options['categories']:
             real_prod_implemented_by_cat = 0
             self.stdout.write(
@@ -65,7 +66,7 @@ class Command(BaseCommand):
             # Download data from OpenFoodFacts API
             size = size_by_cat[0]
             raw_data = download_products(cat, size)
-            # Delete incomplete, empty set or duplicate product
+            # Delete incomplete, empty set or duplicate product into category
             data_checked = check_products(
                 raw_data, 
                 prod_keys, 
@@ -73,18 +74,14 @@ class Command(BaseCommand):
             )
             # Formating dict of nutriments
             final_data = formatting_data(data_checked)
-            # Create the products objects into local database
+            # Delete duplicate
+            final_data = del_duplicate(final_data)
+            # Adding cat to each product dict
             for prod in final_data:
-                Product.objects.create(
-                    name = prod['product_name'],
-                    category = cat,
-                    image = prod['image_url'],
-                    link = prod['url'],
-                    nutriscore = prod['nutrition_grades'],
-                    fat = prod['fat_100g'],
-                    salt = prod['salt_100g'],
-                    sugars = prod['sugars_100g'],
-                )
+                prod.update({"category":cat})
+            products_all_categories_unchecked += final_data
+            # Create prompt messages
+            for prod in final_data:
                 real_prod_implemented_by_cat += 1
                 prod_name = prod['product_name']
                 self.stdout.write(
@@ -108,6 +105,23 @@ class Command(BaseCommand):
                     )
                 )
                 bad_cat.append(cat)
+
+        # Delete duplicates products from crossover categories
+        products_all_categories_checked = del_duplicate(
+            products_all_categories_unchecked
+        )
+        # Create products into local database
+        for prod in products_all_categories_checked:
+            Product.objects.create(
+                name = prod['product_name'],
+                category = prod['category'],
+                image = prod['image_url'],
+                link = prod['url'],
+                nutriscore = prod['nutrition_grades'],
+                fat = prod['fat_100g'],
+                salt = prod['salt_100g'],
+                sugars = prod['sugars_100g'],
+            )
         # Final Report
         report['valid categories'] = good_cat
         report['incorrect'] = bad_cat

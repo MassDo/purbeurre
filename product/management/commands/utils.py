@@ -35,7 +35,7 @@ def check_products(products, prod_keys, nutri_keys):
         products is a list.
 
         Delete product with incomplete fields from the products list
-        and return a list of complete products with no duplicate product.
+        and return a list of complete products.
     """
     products_checked = [] 
     for prod in products:
@@ -70,16 +70,21 @@ def check_products(products, prod_keys, nutri_keys):
                 break
         if product_is_complete and nutriment_is_complete:
             products_checked.append(prod_checked)
-    # If duplicate products keep only one
+    
+    return products_checked
+
+def del_duplicate(prod_duplicate):
+    """
+        Del the duplicate product from a list of products.
+    """
     products_checked_unique = []
     known_prod_name = []
-    for prod in products_checked:
+    for prod in prod_duplicate:
         if prod["product_name"] not in known_prod_name:
             products_checked_unique.append(prod)
             known_prod_name.append(prod["product_name"])
 
     return products_checked_unique
-
 
 def formatting_data(products):
     """

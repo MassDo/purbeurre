@@ -148,7 +148,7 @@ class TestUtils(TestCase):
             "image_url",
             "url",
             "nutrition_grades",
-            "nutriments"
+            "nutriments",
         ]
         cls.nutri_keys = [
             "sugars_100g",
@@ -249,9 +249,16 @@ class TestUtils(TestCase):
             
         ]
         # Result list after check_product
-        cls.products_checked_empty_value_and_duplicate = [
+        cls.products_checked_empty_value = [
             {
                 'product_name': 'test_prod_1', 
+                'image_url': 'test_im_url_1', 
+                'url': 'test_url_1', 
+                'nutrition_grades': 'a', 
+                'nutriments': {'sugars_100g': '1', 'salt_100g': '2', 'fat_100g': '3'}
+            },
+            {
+                'product_name': 'test_prod_1',  # Duplicate product
                 'image_url': 'test_im_url_1', 
                 'url': 'test_url_1', 
                 'nutrition_grades': 'a', 
@@ -269,6 +276,15 @@ class TestUtils(TestCase):
                 'salt_100g': '2',
                 'fat_100g': '3'
             },
+            {
+                'product_name': 'test_prod_1', 
+                'image_url': 'test_im_url_1', 
+                'url': 'test_url_1', 
+                'nutrition_grades': 'a', 
+                'sugars_100g': '1',
+                'salt_100g': '2',
+                'fat_100g': '3'
+            }
         ]
 
     @patch(
@@ -312,22 +328,22 @@ class TestUtils(TestCase):
 
     def test_check_products(self):
         """
-            Test the te duplicate products or partially empty products are removed
-            and that check_products return list of list.
+            Test the  partially empty products are removed
+            and that check_products return list of lists.
         """
-        prod_check_unique = check_products(
+        prod_check = check_products(
             self.products_unchecked_empty_value_and_duplicate,
             self.prod_keys,
             self.nutri_keys
         )
         self.assertEqual(
-            prod_check_unique,
-            self.products_checked_empty_value_and_duplicate
+            prod_check,
+            self.products_checked_empty_value
         )
 
     def test_formating_data(self):
         product_formatted = formatting_data(
-            self.products_checked_empty_value_and_duplicate
+            self.products_checked_empty_value
         )
         self.assertEqual(product_formatted, self.products_formatted)
         
