@@ -9,7 +9,17 @@
 
 <!-- Product searched -->
 {% block masterhead %}
-    <header class="masthead masthead-custom custom-header">
+    
+    {% if best_prod %}
+      <header class="masthead masthead-custom custom-header" style=
+        "background: url('{{ user_prod.image }}');
+        background-repeat: no-repeat;
+        background-position:bottom;
+        background-size: auto;
+        background-color:rgb(196, 191, 183)"> 
+    {% else %}
+      <header class="masthead masthead-custom custom-header">
+    {% endif %}
         <div class="container">
           <div class="row h-30 align-items-center justify-content-center text-center">
               <div class="col-lg-10 align-self-end">
@@ -17,7 +27,7 @@
                 {% if best_prod %}
                   <h1 class="text-uppercase text-white font-weight-bold prod-title-custom">{{ user_input }}</h1>
                 {% else %}
-                <h3 class="text-uppercase text-white font-weight-bold prod-title-custom">Désolé nous ne trouvont pas de meilleur produit pour remplacer le {{ user_input }}</h1>
+                <h3 class="text-uppercase text-white font-weight-bold prod-title-custom">Désolé nous ne trouvont pas de meilleur produit pour remplacer: {{ user_input }}</h1>
                 {% endif %}
                 
               </div>

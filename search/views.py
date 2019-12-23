@@ -39,6 +39,7 @@ def results(request):
     form_search = FoodSearchForm()
     title = 'Résultats'
     user_input = request.session.get('user_input')
+    user_prod = Product.objects.filter(name=user_input).first()
     best_prod = Product.objects.best_product(user_input)
 
     # if the user want to add a product
@@ -55,7 +56,7 @@ def results(request):
                 print(f"Invalid product_id ERROR: {err}")
         else:
             messages.warning(request,'vous devez etre connecté pour enregistrer un aliment')
-    else:
+    elif best_prod:
         messages.success(request, 'Voici des aliments de comparables et de meilleurs qualité !')
     
     return render(request, 'search/results.html', locals())
