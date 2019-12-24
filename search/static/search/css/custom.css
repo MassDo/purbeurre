@@ -23,6 +23,10 @@ div.image-container {
 #account-info{
     min-height: 70vh;
 }
+#story{
+    min-height: 70vh;
+    background-color: rgb(238, 234, 234);
+}
 
 
 

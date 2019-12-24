@@ -1,1 +1,4 @@
-/* Need to change the color of the .text-muted class */
+#hint_id_password1,#hint_id_username,#hint_id_password2{
+    color: rgb(127, 233, 132) !important;
+    z-index: 9999;
+}

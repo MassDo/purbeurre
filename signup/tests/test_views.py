@@ -32,15 +32,14 @@ class TestView(TestCase):
             'password1':'123Testpass',
             'password2':'123Testpass',
         }
-        response = self.client.post(self.signup_url, data)
-        self.assertEqual(response.status_code, 200)
-        
-        username = response.context['username']
+        response = self.client.post(self.signup_url, data, follow=True)
+        self.assertRedirects(response, reverse('login'), 302)
+        user_created = CustomUser.objects.get(username='test')
+        username = user_created.username
         self.assertEqual(username, 'test')
         message = list(response.context['messages'])
         self.assertEqual(str(message[0]), f'{username}, your account has been created! You are now able to log in')
         self.assertTemplateUsed(response, 'users/login.html')
-        self.assertTrue(isinstance(response.context['form_search'], FoodSearchForm))
     
     def test_signup_post_logged(self):
         self.client.login(

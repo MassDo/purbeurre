@@ -9,12 +9,14 @@
     <meta name="author" content="">
 
     <!-- title -->
-    
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Creative - Start Bootstrap Theme</title>
     {% endif %}
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'img/icons/favicon.ico' %}">
 
     <!-- Font Awesome Icons -->
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css"> 

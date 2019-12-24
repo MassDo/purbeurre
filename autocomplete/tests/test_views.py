@@ -27,7 +27,7 @@ class TestAutocompleteViews(TestCase):
         }
         json_data = json.dumps(data)
         response = self.client.get(
-            self.url, 
+            self.url,
             json_data, 
             HTTP_X_REQUESTED_WITH='XMLHttpRequest'
         )
