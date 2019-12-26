@@ -11,7 +11,7 @@ def ajax_auto(request):
     """
     data = 'fail'
     if request.is_ajax():
-        q = request.GET.get('term', '')
+        q = request.GET.get('term', '').lower()
         products = Product.objects.filter(name__icontains=q)
         results = []
         for prod in products:

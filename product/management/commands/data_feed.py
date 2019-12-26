@@ -66,7 +66,7 @@ class Command(BaseCommand):
             # Download data from OpenFoodFacts API
             size = size_by_cat[0]
             raw_data = download_products(cat, size)
-            # Delete incomplete, empty set or duplicate product into category
+            # Delete incomplete, or empty set into category
             data_checked = check_products(
                 raw_data, 
                 prod_keys, 
@@ -113,7 +113,7 @@ class Command(BaseCommand):
         # Create products into local database
         for prod in products_all_categories_checked:
             Product.objects.create(
-                name = prod['product_name'],
+                name = prod['product_name'].lower(),
                 category = prod['category'],
                 image = prod['image_url'],
                 link = prod['url'],

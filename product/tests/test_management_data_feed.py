@@ -2,10 +2,7 @@ from io import StringIO
 from django.test import TestCase
 from django.core.management import call_command
 from unittest.mock import patch
-from product.tests.test_management_utils import(
-    mocked_requests_get, 
-    # mocked_requests_get_connection_error
-)
+from product.tests.test_management_utils import mocked_requests_get
 from product.management.commands import data_feed
 
 
