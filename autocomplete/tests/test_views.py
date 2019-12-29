@@ -25,12 +25,12 @@ class TestAutocompleteViews(TestCase):
         data = {
             'term':'name_p1',
         }
-        json_data = json.dumps(data)
         response = self.client.get(
             self.url,
-            json_data, 
+            data,
             HTTP_X_REQUESTED_WITH='XMLHttpRequest'
         )
+        result = json.loads(response.content)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['results'][0], self.prod)
+        self.assertEqual(result[0], self.prod.name)
 
