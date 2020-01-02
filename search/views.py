@@ -55,9 +55,9 @@ def results(request):
             except Product.DoesNotExist as err:
                 print(f"Invalid product_id ERROR: {err}")
         else:
-            messages.warning(request,'vous devez etre connecté pour enregistrer un aliment')
+            messages.warning(request,'vous devez etre connecté pour enregistrer un aliment...')
     elif best_prod:
-        messages.success(request, 'Voici des aliments de comparables et de meilleurs qualité !')
+        messages.success(request, 'Voici des aliments comparables, mais de meilleurs qualité !')
     
     return render(request, 'search/results.html', locals())
 
