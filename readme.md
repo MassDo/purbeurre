@@ -23,7 +23,7 @@ sudo -i -u postgres
 createdb purbeurre 
 ```
 If you have any difficulties see the postgresql [documentation](https://www.postgresql.org/).<br>
-**Set environment variables**
+**Set environment variables**<br>
 You need to set 2 environment variables:
 * SECRET_KEY: django key.
 * PASSWORD: your database password.<br>
@@ -39,9 +39,10 @@ Now the database schema are created but the database is empty we need to feed it
 You can use the custom command data_feed to do it !
 For example: 
 ```sh
-./manage.py data_feed olives tapas --prod=25
+./manage.py data_feed olives tapas badacategory 'pâtes à tartiner' --prod=25
 ```
-It will implement the database with 25 products of the categories "olives" and "tapas" from the OpenFoodFacts API
+You will have a report of the database implementation:
+![data_feed](static/img/data_feed.png)
 
 ## Run the app
 
