@@ -22,11 +22,11 @@ pipenv install
 sudo -i -u postgres
 createdb purbeurre 
 ```
-if you have difficulty see the [postgresql documentation](https://www.postgresql.org/)
+If you have any difficulties see the postgresql [documentation](https://www.postgresql.org/).<br>
 **Set environment variables**
 You need to set 2 environment variables:
-...SECRET_KEY: django key.
-...PASSWORD: your database password.
+* SECRET_KEY: django key.
+* PASSWORD: your database password.<br>
 **make the migrations**
 Into the projet directory (purbeurre):
 ```sh
@@ -37,9 +37,11 @@ Now the database schema are created but the database is empty we need to feed it
 
 ## Database implementation
 You can use the custom command data_feed to do it !
-For example 
+For example: 
 ```sh
+./manage.py data_feed olives tapas --prod=25
 ```
+It will implement the database with 25 products of the categories "olives" and "tapas" from the OpenFoodFacts API
 
 ## Run the app
 
@@ -57,11 +59,3 @@ https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 Deploy the app with this tutorial:
 
 https://devcenter.heroku.com/articles/git
-
-Wait you have two Last things to do ! You need first to go to the main.py module and do this changes:
-
-![main.py_changes](images/prod.png)
-
-And finally, create the following environment variable for containing your google map API keys for server use.
-
-![main.py_changes](images/api_key.png)
