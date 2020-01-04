@@ -12,7 +12,7 @@ The following steps are for bash:
 ```sh
 git clone https://github.com/MassDo/purbeurre.git
 ```
-**Install dependencies with pipenv:**
+**Install dependencies with [pipenv](https://github.com/pypa/pipenv):**
 ```sh
 cd purbeurre # default name of the project
 pipenv install
