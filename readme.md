@@ -33,7 +33,7 @@ Into the projet directory (purbeurre):
 pipenv shell # activate the virtual env
 ./manage.py migrate 
 ```
-Now the database schema are created but the database is empty we need to feed it with data from the OpenFoodFact project
+Now the database schema are created, but the database is empty, we need to feed it with data from the OpenFoodFacts project !
 
 ## Database implementation
 You can use the custom command data_feed to do it !
@@ -44,12 +44,17 @@ For example:
 You will have a report of the database implementation:
 ![data_feed](static/img/data_feed.png)
 
+## Create admin account
+```sh
+./manage.py createsuperuser
+```
 ## Run the app
 
 ```sh
 ./manage.py runserver
 ```
-The application is running on local http://127.0.0.1:8000/
+The application is running on local http://127.0.0.1:8000/ <br>
+You can acces to the back office here http://127.0.0.1:8000/admin using your admin credentials.
 
 ## Deploying on heroku
 
