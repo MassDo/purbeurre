@@ -22,12 +22,12 @@ pipenv install
 sudo -i -u postgres
 createdb purbeurre 
 ```
-If you have any difficulties see the postgresql [documentation](https://www.postgresql.org/).<br>
+If you have any difficulties see the postgresql [documentation](https://www.postgresql.org/).<br><br>
 **Set environment variables**<br>
 You need to set 2 environment variables:
 * SECRET_KEY: django key.
-* PASSWORD: your database password.<br>
-**make the migrations**
+* PASSWORD: your database password.<br><br>
+**Make the migrations**<br>
 Into the projet directory (purbeurre):
 ```sh
 pipenv shell # activate the virtual env
