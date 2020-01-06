@@ -30,7 +30,7 @@ You need to set 2 environment variables:
 * PASSWORD: your database password.<br><br>
 
 **Make the migrations**<br>
-Into the projet directory (purbeurre):
+Into the project directory (purbeurre):
 ```sh
 pipenv shell # activate the virtual env
 ./manage.py migrate 
