@@ -28,6 +28,7 @@ If you have any difficulties see the postgresql [documentation](https://www.post
 You need to set 2 environment variables:
 * SECRET_KEY: django key.
 * PASSWORD: your database password.<br><br>
+
 **Make the migrations**<br>
 Into the projet directory (purbeurre):
 ```sh
