@@ -6,13 +6,14 @@ You can create an account, an save your favorite foods.
 
 ## Installation
 
-The following steps are for bash:
+Follow the steps:
 
 **Clone this repository with:**
 ```sh
 git clone https://github.com/MassDo/purbeurre.git
 ```
-**Install dependencies with [pipenv](https://github.com/pypa/pipenv):**
+**Install dependencies with [pipenv](https://github.com/pypa/pipenv):**<br><br>
+Make sure you’ve got Python & pip, [here](https://pipenv.kennethreitz.org/en/latest/install/) some help !
 ```sh
 cd purbeurre # default name of the project
 pipenv install
