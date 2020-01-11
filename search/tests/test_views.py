@@ -72,7 +72,7 @@ class TestViews(TestCase):
         response = self.client.post(self.results_url, {'prod_id': 23})
         message = list(response.context['messages'])
         self.assertEqual(len(message), 1)
-        self.assertEqual(str(message[0]), 'vous devez etre connecté pour enregistrer un aliment')
+        self.assertEqual(str(message[0]), 'vous devez etre connecté pour enregistrer un aliment...')
 
     def test_results_post_logged_prod_id_invalid(self):
         self.client.login(
