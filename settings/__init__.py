@@ -162,7 +162,6 @@ client_encoding: 'UTF8'
 default_transaction_isolation: 'read committed'
 timezone: 'UTC'
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
+
 
 
